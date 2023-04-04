@@ -1,4 +1,4 @@
-# QuACS: Quantum-supported Graph Coalition Structure generation
+# QuACS: Variational Quantum Algorithm for Coalition Structure Generation in Induced Subgraph Games
 This repository contains the code to reproduce the results presented in the paper *QuACS : Variational Quantum Algorithm for Coalition Structure Generation in Induced Subgraph Games*, published in the [20th ACM International Conference on Computing Frontiers 2023 – Bologna, Italy](https://www.computingfrontiers.org/2023/).
 
 # Contents
