@@ -4,9 +4,9 @@ import os
 import json
 import networkx as nx
 
-import dimod
-from dwave.system.samplers import DWaveSampler
-from dwave.system.composites import EmbeddingComposite
+# import dimod
+# from dwave.system.samplers import DWaveSampler
+# from dwave.system.composites import EmbeddingComposite
 
 import numpy as np
 
@@ -161,40 +161,4 @@ def create_dir(path, log=False):
     else:
         if log:
             print('The directory', path, ' already exists')
-
-
-            
-def dwave_solver(linear, quadratic, offset = 0.0, runs=10000):
-    """
-    Solve Ising hamiltonian or qubo problem instance using dimod API for using dwave system.
-    :params
-    linear: dictionary of linear coefficient terms in the QUBO formulation of the CSG problem.
-    quadratic: dictionary of quadratic coefficient terms in the QUBO formulation of the CSG problem.
-    runs: Number of repeated executions
-    :return
-    sample_set: Samples and any other data returned by dimod samplers.
-    """
-    # DWaveSampler()
-    vartype = dimod.BINARY
-
-    bqm = dimod.BinaryQuadraticModel(linear, quadratic, 0.0, vartype)
-    sampler = EmbeddingComposite(DWaveSampler(solver={'topology__type': 'chimera'}))
-    sample_set = sampler.sample(bqm, num_reads=runs)
-    return sample_set
-
-def from_columns_to_string(df):
-
-    cols = []
-    for col in df.columns:
-        if 'x_' in col:
-            cols.append(col)
-
-    df['x'] = 'x'
-    for index, row in df.iterrows():
-        x = ''
-        for col in cols:
-            x = x + str(row[col])
-        df.loc[index, 'x'] = x
-    return df[['x', 'num_occurrences', 'energy']]
-
 
